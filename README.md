@@ -1,6 +1,6 @@
 # linvim
 
-## a fast vim config with easy hotkeys
+## a light vim config with easy hotkeys,running fast
 
 * only test in linux (my env is linux mint);
 
