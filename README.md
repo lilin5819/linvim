@@ -2,6 +2,8 @@
 
 ## a light vim config with easy hotkeys,running fast
 
+![show](github.com/lilin5819/linvim/show.jpg)
+
 * only test in linux (my env is linux mint);
 
 * How to install:
