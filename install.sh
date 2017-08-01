@@ -1,6 +1,7 @@
 #!/bin/bash
 # Author:1657301947@qq.com
 
-ln -srf linvim/.vimrc ~
+ln -srf .vimrc ~
 [ -d ~/.vim ] || mkdir ~/.vim
-ln -srf linvim/autoload ~/.vim
+[ -d ~/.vimundo ] || mkdir ~/.vimundo
+ln -srf autoload ~/.vim

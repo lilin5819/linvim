@@ -8,10 +8,14 @@ set mouse=a
 set incsearch
 set ignorecase          "忽略大小写
 set autoindent          "自动缩进
-set undodir=~/.vimundo
+
 set undofile
+"set backup
+set swapfile
+set undodir=~/.vimundo
 set undolevels=1000
 set undoreload=10000
+
 "set cursorline cursorcolumn
 "set list
 
@@ -23,34 +27,49 @@ set t_Co=256
 let g:vim_plug=1
 
 if g:vim_plug==1
-""""""""""""""""""""""""""""""""""""""
-filetype off
-call plug#begin('~/.vim/bundle')
-    
+    """"""""""""""""""""""""""""""""""""""
+    filetype off
+    call plug#begin('~/.vim/bundle')
+
     Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
     Plug 'flazz/vim-colorschemes'
     "Plug 'altercation/vim-colors-solarized'
     Plug 'sjl/gundo.vim'
-    
+    Plug 'mbbill/undotree'
+
+    "Plug 'vim-airline/vim-airline'
+    "Plug 'vim-airline/vim-airline-themes'
+
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+    Plug 'Shougo/neocomplcache'
+    Plug 'Shougo/neocomplete'
+    Plug 'Shougo/neosnippet'
+    Plug 'Shougo/neosnippet-snippets'
+    Plug 'aperezdc/vim-template'
+
     Plug 'majutsushi/tagbar'
     Plug 'scrooloose/syntastic'
     Plug 'scrooloose/nerdcommenter'
     Plug 'junegunn/vim-easy-align'
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
-    Plug 'rdnetto/YCM-Generator'
-    
+    Plug 'tpope/vim-fugitive'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'terryma/vim-multiple-cursors'
+
+    "Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
+    "Plug 'rdnetto/YCM-Generator'
+
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } 
     Plug 'junegunn/fzf.vim'
-    
-call plug#end()
-"""""""""""""""""""""""""""""""""""""""
+
+
+    call plug#end()
+    """""""""""""""""""""""""""""""""""""""
 else
-""""""""""""""""""""""""""""""""""""""""""""""
-filetype off                  " required
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-    
+    """"""""""""""""""""""""""""""""""""""""""""""
+    filetype off                  " required
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
+
     Plugin 'VundleVim/Vundle.vim'
     Plugin 'scrooloose/nerdtree'
     Plugin 'majutsushi/tagbar'
@@ -60,15 +79,15 @@ call vundle#begin()
     "Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     "Plugin 'junegunn/fzf.vim'
     Plugin 'altercation/vim-colors-solarized'
-    
-call vundle#end()            " required
-"""""""""""""""""""""""""""""""""""""""""""""""""
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just
-":PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to
-""""""""""""""""""""""""""""""""""""""""""""""""
+
+    call vundle#end()            " required
+    """""""""""""""""""""""""""""""""""""""""""""""""
+    " :PluginList       - lists configured plugins
+    " :PluginInstall    - installs plugins; append `!` to update or just
+    ":PluginUpdate
+    " :PluginSearch foo - searches for foo; append `!` to refresh local cache
+    " :PluginClean      - confirms removal of unused plugins; append `!` to
+    """"""""""""""""""""""""""""""""""""""""""""""""
 endif
 if has("autocmd")  
     filetype plugin indent on  
@@ -78,25 +97,25 @@ let g:solarized_termcolors=256
 syntax enable
 set background=dark
 """""""""""""""""""""""""""""""""""""""""""""""
-
-autocmd filetype python setlocal et sta sw=4 sts=4  
-autocmd BufNewFile *.py,*.sh,*.c,*.C,*.cc,*.cpp exec ":call SetFileHead()" 
-
-func SetFileHead()  
-    if &filetype == 'sh'  
-        call setline(1, "\#!/bin/bash")  
-        call append(line("."), "\# Author:1657301947@qq.com")  
-        call append(line(".")+1, "")  
-    elseif &filetype == 'python' 
-        call setline(1, "\#!/bin/env python")  
-        call append(line("."), "\#-\*- coding:utf-8 -\*-")  
-        call append(line(".")+1, "\#Author:1657301947@qq.com")  
-        call append(line(".")+2, "")  
-    endif  
-    call append(line(".")+1, "")  
-    call cursor(line("$")+1,0)
-endfunc 
-
+"
+"autocmd filetype python setlocal et sta sw=4 sts=4  
+"autocmd BufNewFile *.py,*.sh,*.c,*.C,*.cc,*.cpp exec ":call SetFileHead()" 
+"
+"func SetFileHead()  
+"    if &filetype == 'sh'  
+"        call setline(1, "\#!/bin/bash")  
+"        call append(line("."), "\# Author:1657301947@qq.com")  
+"        call append(line(".")+1, "")  
+"    elseif &filetype == 'python' 
+"        call setline(1, "\#!/bin/env python")  
+"        call append(line("."), "\#-\*- coding:utf-8 -\*-")  
+"        call append(line(".")+1, "\#Author:1657301947@qq.com")  
+"        call append(line(".")+2, "")  
+"    endif  
+"    call append(line(".")+1, "")  
+"    call cursor(line("$")+1,0)
+"endfunc 
+"
 """"""""""""""""""""""     "Quickly Run     """""""""""""""""""""" 
 func! CompileAndRun() 
     exec "w" 
@@ -125,7 +144,6 @@ func! CompileAndRun()
         echo "没有此类文件的运行配置"
     endif 
 endfunc
-
 """""""""""""""""""""""""plugin config""""""""""""""""""""""""""""""
 "自动补全配置
 set completeopt=longest,menu
@@ -191,19 +209,19 @@ let g:UltiSnipsJumpBackwardTrigger="<c-p>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:templates_directory = '~/linvim/templates/'
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"if has("persistent_undo")
-"      set undodir=~/.undodir/
-"        set undofile
-"    endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has('python3')
     let g:gundo_prefer_python3 = 1
 endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "colorscheme wombat
-colorscheme molokai
-"colorscheme solarized
+"colorscheme molokai
+colorscheme solarized
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let mapleader = "\<Space>"
@@ -227,25 +245,35 @@ nnoremap <leader>wh          <C-w>h
 nnoremap <leader>wl          <C-w>l
 nnoremap <leader>wd          :q<CR>
 nnoremap <leader>wa          :all<CR>
+
 nnoremap <leader>ud          :GundoToggle<CR>
+nnoremap <leader>ut          :UndotreeToggle<CR>
+nnoremap <leader>tt          :Tabar<CR>
 nnoremap <leader>ff          :FZF<CR>
 nnoremap <leader>ft          :NERDTreeToggle<CR>
 nnoremap <leader>fs          :w<CR>
 nnoremap <leader>fS          :wa!<CR>
-nnoremap <leader>fed          :vi ~/.vimrc<CR>
+nnoremap <leader>fed         :vi ~/.vimrc<CR>
+
 nnoremap <leader>tn          :tabNext<CR>
 nnoremap <leader>bp          :bp<CR>
 nnoremap <leader>bn          :bn<CR>
 nnoremap <leader>ps          :PlugSnapshot<CR>
 nnoremap <leader>pi          :PlugInstall<CR>
-nnoremap <leader>q          :q<CR>
-nnoremap <leader>Q          :qa!<CR>
+nnoremap <leader>pu          :PlugUpdate<CR>
+nnoremap <leader>q           :q<CR>
+nnoremap <leader>Q           :qa!<CR>
 nnoremap <leader>qq          :wqa<CR>
 nnoremap <leader>qQ          :wqa!<CR>
+
+nmap <leader>ea          <Plug>(EasyAlign)
+xmap <leader>ea          <Plug>(EasyAlign)
 
 nnoremap ,e                  :NERDTreeToggle<CR>
 nnoremap ,tt                  :Tagbar<CR>
 nnoremap ,tn                  :tabNext<CR>
+
+nnoremap  ==                 gg=G
 
 inoremap <C-f>t              <ESC>:NERDTreeToggle<CR>
 "nnoremap <silent><Tab>        <C-w>w
