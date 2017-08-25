@@ -4,10 +4,11 @@ set sw=4                "shiftwidth 缩进量
 set ts=4                 "tabstop tab制表符显示宽度
 set et                    "expandtab tab=>4*spc tab空格转换
 set history=500
-set mouse=a
+set mouse=c
 set incsearch
 set ignorecase          "忽略大小写
 set autoindent          "自动缩进
+set backspace=2
 
 set undofile
 "set backup
@@ -37,7 +38,7 @@ if g:vim_plug==1
     Plug 'sjl/gundo.vim'
     Plug 'mbbill/undotree'
 
-    "Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline'
     "Plug 'vim-airline/vim-airline-themes'
 
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -46,13 +47,15 @@ if g:vim_plug==1
     Plug 'Shougo/neosnippet'
     Plug 'Shougo/neosnippet-snippets'
     Plug 'aperezdc/vim-template'
+    Plug 'rking/ag.vim'                 "搜索
 
-    Plug 'majutsushi/tagbar'
-    Plug 'scrooloose/syntastic'
-    Plug 'scrooloose/nerdcommenter'
-    Plug 'junegunn/vim-easy-align'
+    Plug 'majutsushi/tagbar'                                    "函数符号显示
+    Plug 'mhinz/vim-signify'                                    "git svn 改动显示
+    Plug 'scrooloose/syntastic'                                 "语法高亮
+    Plug 'scrooloose/nerdcommenter'                             "注释
+    Plug 'junegunn/vim-easy-align'                              "对齐
     Plug 'tpope/vim-fugitive'
-    Plug 'jiangmiao/auto-pairs'
+    Plug 'jiangmiao/auto-pairs'         
     Plug 'terryma/vim-multiple-cursors'
 
     "Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
@@ -163,7 +166,7 @@ inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" :
 "youcompleteme  默认tab  s-tab 和自动补全冲突
 let g:ycm_key_list_select_completion=['<c-n>']
 let g:ycm_key_list_previous_completion=['<c-p>']
-let g:ycm_server_python_interpreter='/opt/anaconda2/bin/python'
+let g:ycm_server_python_interpreter='/opt/anaconda3/bin/python'
 let g:ycm_global_ycm_extra_conf='~/.ycm_global_ycm_extra_conf'
 let g:ycm_auto_trigger=1
 let g:ycm_collect_identifiers_from_tags_files=1
@@ -261,10 +264,8 @@ nnoremap <leader>bn          :bn<CR>
 nnoremap <leader>ps          :PlugSnapshot<CR>
 nnoremap <leader>pi          :PlugInstall<CR>
 nnoremap <leader>pu          :PlugUpdate<CR>
-nnoremap <leader>q           :q<CR>
-nnoremap <leader>Q           :qa!<CR>
-nnoremap <leader>qq          :wqa<CR>
-nnoremap <leader>qQ          :wqa!<CR>
+nnoremap <leader>wq          :wqa<CR>
+nnoremap <leader>qq          :qa!<CR>
 
 nmap <leader>ea          <Plug>(EasyAlign)
 xmap <leader>ea          <Plug>(EasyAlign)
@@ -278,7 +279,7 @@ nnoremap  ==                 gg=G
 inoremap <C-f>t              <ESC>:NERDTreeToggle<CR>
 "nnoremap <silent><Tab>        <C-w>w
 nnoremap <silent><Tab>        <C-w>w
-nnoremap <silent><S-Tab>    :tabNext<CR>
+"nnoremap <silent><S-Tab>    :tabNext<CR>
 
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR> " 跳转到定义处
 
