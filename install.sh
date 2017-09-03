@@ -4,4 +4,5 @@
 [ -d ~/.vim ] && mv ~/.vim ~/.vim`date +"%m%d"`.bak || rm ~/.vim
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-ln -srf ./vimrc ~/.vim/vimrc
+curl -sLf https://raw.githubusercontent.com/lilin5819/linvim/master/vimrc > ~/.vim/vimrc
+#ln -srf ./vimrc ~/.vim/vimrc
