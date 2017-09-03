@@ -25,73 +25,45 @@ syntax on
 set t_Co=256
 
 
-let g:vim_plug=1
+""""""""""""""""""""""""""""""""""""""
+filetype off
+call plug#begin('~/.vim/bundle')
 
-if g:vim_plug==1
-    """"""""""""""""""""""""""""""""""""""
-    filetype off
-    call plug#begin('~/.vim/bundle')
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'flazz/vim-colorschemes'
+"Plug 'altercation/vim-colors-solarized'
+Plug 'sjl/gundo.vim'
+Plug 'mbbill/undotree'
 
-    Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-    Plug 'flazz/vim-colorschemes'
-    "Plug 'altercation/vim-colors-solarized'
-    Plug 'sjl/gundo.vim'
-    Plug 'mbbill/undotree'
+Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 
-    Plug 'vim-airline/vim-airline'
-    "Plug 'vim-airline/vim-airline-themes'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'Shougo/neocomplcache'
+Plug 'Shougo/neocomplete'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'aperezdc/vim-template'
+Plug 'rking/ag.vim'                 "搜索
 
-    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-    Plug 'Shougo/neocomplcache'
-    Plug 'Shougo/neocomplete'
-    Plug 'Shougo/neosnippet'
-    Plug 'Shougo/neosnippet-snippets'
-    Plug 'aperezdc/vim-template'
-    Plug 'rking/ag.vim'                 "搜索
+Plug 'majutsushi/tagbar'                                    "函数符号显示
+Plug 'mhinz/vim-signify'                                    "git svn 改动显示
+Plug 'scrooloose/syntastic'                                 "语法高亮
+Plug 'scrooloose/nerdcommenter'                             "注释
+Plug 'junegunn/vim-easy-align'                              "对齐
+Plug 'tpope/vim-fugitive'
+Plug 'jiangmiao/auto-pairs'         
+Plug 'terryma/vim-multiple-cursors'
 
-    Plug 'majutsushi/tagbar'                                    "函数符号显示
-    Plug 'mhinz/vim-signify'                                    "git svn 改动显示
-    Plug 'scrooloose/syntastic'                                 "语法高亮
-    Plug 'scrooloose/nerdcommenter'                             "注释
-    Plug 'junegunn/vim-easy-align'                              "对齐
-    Plug 'tpope/vim-fugitive'
-    Plug 'jiangmiao/auto-pairs'         
-    Plug 'terryma/vim-multiple-cursors'
+"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
+"Plug 'rdnetto/YCM-Generator'
 
-    "Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
-    "Plug 'rdnetto/YCM-Generator'
-
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } 
-    Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } 
+Plug 'junegunn/fzf.vim'
 
 
-    call plug#end()
+call plug#end()
     """""""""""""""""""""""""""""""""""""""
-else
-    """"""""""""""""""""""""""""""""""""""""""""""
-    filetype off                  " required
-    set rtp+=~/.vim/bundle/Vundle.vim
-    call vundle#begin()
-
-    Plugin 'VundleVim/Vundle.vim'
-    Plugin 'scrooloose/nerdtree'
-    Plugin 'majutsushi/tagbar'
-    Plugin 'tpope/vim-fugitive'
-    Plugin 'scrooloose/syntastic'
-    "Plugin 'weekmonster/fzf-filemru'
-    "Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    "Plugin 'junegunn/fzf.vim'
-    Plugin 'altercation/vim-colors-solarized'
-
-    call vundle#end()            " required
-    """""""""""""""""""""""""""""""""""""""""""""""""
-    " :PluginList       - lists configured plugins
-    " :PluginInstall    - installs plugins; append `!` to update or just
-    ":PluginUpdate
-    " :PluginSearch foo - searches for foo; append `!` to refresh local cache
-    " :PluginClean      - confirms removal of unused plugins; append `!` to
-    """"""""""""""""""""""""""""""""""""""""""""""""
-endif
 if has("autocmd")  
     filetype plugin indent on  
 endif  
