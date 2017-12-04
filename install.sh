@@ -5,4 +5,4 @@
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 curl -sLf https://raw.githubusercontent.com/lilin5819/linvim/master/vimrc > ~/.vim/vimrc
-ln -srf ./vim/vimrc ~/.vimrc
+ln -srf ~/.vim/vimrc ~/.vimrc
